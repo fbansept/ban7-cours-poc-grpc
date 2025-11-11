@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: payment-service
+
+# Configuration gRPC Server
+grpc:
+  server:
+    port: 9090
+    # Configuration de sécurité (pour la production, utiliser TLS)
+    security:
+      enabled: false
+    # Configuration des limites
+    max-inbound-message-size: 4MB
+    max-inbound-metadata-size: 8KB
+    # Keep alive
+    enable-keep-alive: true
+    keep-alive-time: 30s
+    keep-alive-timeout: 5s
+    permit-keep-alive-without-calls: true
+
+logging:
+  level:
+    root: INFO
+    edu.ban7.cours.poc.grpc: DEBUG
+    io.grpc: INFO
+    net.devh.boot.grpc: INFO
+    # Supprime les warnings des providers manquants
+    io.grpc.internal.ServerImplBuilder: ERROR
+    io.grpc.NameResolverRegistry: ERROR

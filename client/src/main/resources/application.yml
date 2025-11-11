@@ -1,0 +1,30 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: cart-api
+
+# Configuration gRPC Client
+grpc:
+  client:
+    payment-service:
+      address: 'static://localhost:9090'
+      negotiationType: plaintext
+      # Timeout pour les appels gRPC (en secondes)
+      deadline: 10s
+      # Configuration de retry (optionnel)
+      enableKeepAlive: true
+      keepAliveTime: 30s
+      keepAliveTimeout: 5s
+      # Configuration pour ne pas échouer au démarrage si le serveur n'est pas disponible
+      immediateConnectTimeout: 0
+
+logging:
+  level:
+    root: INFO
+    edu.ban7.cours.poc.grpc: DEBUG
+    io.grpc: INFO
+    # Supprime les warnings des providers manquants
+    io.grpc.internal.ManagedChannelImplBuilder: ERROR
+    io.grpc.NameResolverRegistry: ERROR
